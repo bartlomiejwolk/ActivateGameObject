@@ -91,9 +91,15 @@ namespace ActivateGameObjectEx {
 
         #region METHODS
 
+        /// <summary>
+        /// Activate all game object in list order.
+        /// </summary>
         public void Activate() {
-
+            foreach (var GO in GameObjects) {
+                GO.SetActive(true);
+            }
         }
+
         #endregion
 
     }
