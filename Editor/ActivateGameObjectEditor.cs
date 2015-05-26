@@ -51,7 +51,7 @@ namespace ActivateGameObjectEx {
                 unityEvents,
                 new GUIContent(
                     "Callback",
-                    "Actions executed after all game objects were" +
+                    "Actions executed after all game objects are" +
                     "activated."));
         }
 

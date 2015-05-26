@@ -66,7 +66,7 @@ namespace ActivateGameObjectEx {
         }
 
         /// <summary>
-        ///     Callback actions executed after all game objects were activated.
+        ///     Callback actions executed after all game objects are activated.
         /// </summary>
         public UnityEvent UnityEvents {
             get { return unityEvents; }
