@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ActivateGameObjectEx {
 
@@ -65,7 +66,9 @@ namespace ActivateGameObjectEx {
 
         #region UNITY MESSAGES
 
-        private void Awake() { }
+        private void Awake() {
+            Activate();
+        }
 
         private void FixedUpdate() { }
 
@@ -95,8 +98,10 @@ namespace ActivateGameObjectEx {
         /// Activate all game object in list order.
         /// </summary>
         public void Activate() {
-            foreach (var GO in GameObjects) {
-                GO.SetActive(true);
+            foreach (var gameObj in GameObjects.Where(
+                gameObj => gameObj != null)) {
+
+                gameObj.SetActive(true);
             }
         }
 
