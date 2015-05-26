@@ -1,43 +1,36 @@
 ﻿// Copyright (c) 2015 Bartlomiej Wolk (bartlomiejwolk@gmail.com)
-//  
-// This file is part of the ActivateGameObject extension for Unity.
-// Licensed under the MIT license. See LICENSE file in the project root folder.
+// 
+// This file is part of the ActivateGameObject extension for Unity. Licensed
+// under the MIT license. See LICENSE file in the project root folder.
 
-using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace ActivateGameObjectEx {
 
     public sealed class ActivateGameObject : MonoBehaviour {
-
         #region CONSTANTS
 
-        public const string Version = "v0.1.0";
         public const string Extension = "ActivateGameObject";
+        public const string Version = "v0.1.0";
 
-        #endregion
-
-        #region DELEGATES
-        #endregion
-
-        #region EVENTS
-        #endregion
+        #endregion CONSTANTS
 
         #region FIELDS
 
         /// <summary>
-        /// Allows identify component in the scene file when reading it with
-        /// text editor.
+        ///     Allows identify component in the scene file when reading it with
+        ///     text editor.
         /// </summary>
 #pragma warning disable 0414
         [SerializeField]
         private string componentName = "ActivateGameObject";
+
 #pragma warning restore0414
 
-        #endregion
+        #endregion FIELDS
 
         #region INSPECTOR FIELDS
 
@@ -50,12 +43,13 @@ namespace ActivateGameObjectEx {
         [SerializeField]
         private UnityEvent unityEvents;
 
-        #endregion
+        #endregion INSPECTOR FIELDS
 
         #region PROPERTIES
 
         /// <summary>
-        /// Optional text to describe purpose of this instance of the component.
+        ///     Optional text to describe purpose of this instance of the
+        ///     component.
         /// </summary>
         public string Description {
             get { return description; }
@@ -63,8 +57,8 @@ namespace ActivateGameObjectEx {
         }
 
         /// <summary>
-        /// List of game object to activate. Game objects will be activate
-        /// in list order.
+        ///     List of game object to activate. Game objects will be activate in
+        ///     list order.
         /// </summary>
         public List<GameObject> GameObjects {
             get { return gameObjects; }
@@ -72,14 +66,14 @@ namespace ActivateGameObjectEx {
         }
 
         /// <summary>
-        /// Callback actions executed after all game objects were activated.
+        ///     Callback actions executed after all game objects were activated.
         /// </summary>
         public UnityEvent UnityEvents {
             get { return unityEvents; }
             set { unityEvents = value; }
         }
 
-        #endregion
+        #endregion PROPERTIES
 
         #region UNITY MESSAGES
 
@@ -87,32 +81,33 @@ namespace ActivateGameObjectEx {
             Activate();
         }
 
-        private void FixedUpdate() { }
+        private void FixedUpdate() {
+        }
 
-        private void LateUpdate() { }
+        private void LateUpdate() {
+        }
 
-        private void OnEnable() { }
+        private void OnEnable() {
+        }
 
-        private void Reset() { }
+        private void OnValidate() {
+        }
 
-        private void Start() { }
+        private void Reset() {
+        }
 
-        private void Update() { }
+        private void Start() {
+        }
 
-        private void OnValidate() { }
+        private void Update() {
+        }
 
-        #endregion
-
-        #region EVENT INVOCATORS
-        #endregion
-
-        #region EVENT HANDLERS
-        #endregion
+        #endregion UNITY MESSAGES
 
         #region METHODS
 
         /// <summary>
-        /// Activate all game object in list order.
+        ///     Activate all game object in list order.
         /// </summary>
         public void Activate() {
             foreach (var gameObj in GameObjects.Where(
@@ -124,8 +119,7 @@ namespace ActivateGameObjectEx {
             UnityEvents.Invoke();
         }
 
-        #endregion
-
+        #endregion METHODS
     }
 
 }

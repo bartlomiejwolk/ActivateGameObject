@@ -1,14 +1,14 @@
 ﻿// Copyright (c) 2015 Bartlomiej Wolk (bartlomiejwolk@gmail.com)
-//  
-// This file is part of the ActivateGameObject extension for Unity.
-// Licensed under the MIT license. See LICENSE file in the project root folder.
+// 
+// This file is part of the ActivateGameObject extension for Unity. Licensed
+// under the MIT license. See LICENSE file in the project root folder.
 
 using UnityEditor;
 using UnityEngine;
 
 namespace ActivateGameObjectEx {
 
-    [CustomEditor(typeof(ActivateGameObject))]
+    [CustomEditor(typeof (ActivateGameObject))]
     [CanEditMultipleObjects]
     public sealed class ActivateGameObjectEditor : Editor {
         #region FIELDS
@@ -41,6 +41,11 @@ namespace ActivateGameObjectEx {
             serializedObject.ApplyModifiedProperties();
         }
 
+        private void DrawGameObjectsList() {
+            ReorderableListGUI.Title("Game Objects");
+            ReorderableListGUI.ListField(gameObjects);
+        }
+
         private void DrawUnityEventsList() {
             EditorGUILayout.PropertyField(
                 unityEvents,
@@ -50,13 +55,8 @@ namespace ActivateGameObjectEx {
                     "activated."));
         }
 
-        private void DrawGameObjectsList() {
-            ReorderableListGUI.Title("Game Objects");
-            ReorderableListGUI.ListField(gameObjects);
-        }
-
         private void OnEnable() {
-            Script = (ActivateGameObject)target;
+            Script = (ActivateGameObject) target;
 
             description = serializedObject.FindProperty("description");
             gameObjects = serializedObject.FindProperty("gameObjects");
@@ -67,6 +67,11 @@ namespace ActivateGameObjectEx {
 
         #region INSPECTOR CONTROLS
 
+        private void DrawDescriptionTextArea() {
+            description.stringValue = EditorGUILayout.TextArea(
+                description.stringValue);
+        }
+
         private void DrawVersionLabel() {
             EditorGUILayout.LabelField(
                 string.Format(
@@ -75,19 +80,15 @@ namespace ActivateGameObjectEx {
                     ActivateGameObject.Extension));
         }
 
-        private void DrawDescriptionTextArea() {
-            description.stringValue = EditorGUILayout.TextArea(
-                description.stringValue);
-        }
-
-        #endregion INSPECTOR
+        #endregion INSPECTOR CONTROLS
 
         #region METHODS
 
         [MenuItem("Component/ActivateGameObject")]
         private static void AddEntryToComponentMenu() {
             if (Selection.activeGameObject != null) {
-                Selection.activeGameObject.AddComponent(typeof(ActivateGameObject));
+                Selection.activeGameObject.AddComponent(
+                    typeof (ActivateGameObject));
             }
         }
 
