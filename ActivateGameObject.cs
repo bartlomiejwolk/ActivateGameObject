@@ -1,7 +1,13 @@
-﻿using UnityEngine;
+﻿// Copyright (c) 2015 Bartlomiej Wolk (bartlomiejwolk@gmail.com)
+//  
+// This file is part of the ActivateGameObject extension for Unity.
+// Licensed under the MIT license. See LICENSE file in the project root folder.
+
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.Events;
 
 namespace ActivateGameObjectEx {
 
@@ -38,12 +44,11 @@ namespace ActivateGameObjectEx {
         [SerializeField]
         private string description = "Description";
 
-        /// <summary>
-        /// List of game object to activate. Game objects will be activate
-        /// in list order.
-        /// </summary>
         [SerializeField]
-        private List<GameObject> gameObjects; 
+        private List<GameObject> gameObjects;
+
+        [SerializeField]
+        private UnityEvent unityEvents;
 
         #endregion
 
@@ -57,9 +62,21 @@ namespace ActivateGameObjectEx {
             set { description = value; }
         }
 
+        /// <summary>
+        /// List of game object to activate. Game objects will be activate
+        /// in list order.
+        /// </summary>
         public List<GameObject> GameObjects {
             get { return gameObjects; }
             set { gameObjects = value; }
+        }
+
+        /// <summary>
+        /// Callback actions executed after all game objects were activated.
+        /// </summary>
+        public UnityEvent UnityEvents {
+            get { return unityEvents; }
+            set { unityEvents = value; }
         }
 
         #endregion
@@ -103,6 +120,8 @@ namespace ActivateGameObjectEx {
 
                 gameObj.SetActive(true);
             }
+
+            UnityEvents.Invoke();
         }
 
         #endregion

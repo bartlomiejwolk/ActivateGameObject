@@ -1,4 +1,9 @@
-﻿using UnityEditor;
+﻿// Copyright (c) 2015 Bartlomiej Wolk (bartlomiejwolk@gmail.com)
+//  
+// This file is part of the ActivateGameObject extension for Unity.
+// Licensed under the MIT license. See LICENSE file in the project root folder.
+
+using UnityEditor;
 using UnityEngine;
 
 namespace ActivateGameObjectEx {
@@ -16,6 +21,7 @@ namespace ActivateGameObjectEx {
 
         private SerializedProperty description;
         private SerializedProperty gameObjects;
+        private SerializedProperty unityEvents;
 
         #endregion SERIALIZED PROPERTIES
 
@@ -30,8 +36,18 @@ namespace ActivateGameObjectEx {
             EditorGUILayout.Space();
 
             DrawGameObjectsList();
+            DrawUnityEventsList();
 
             serializedObject.ApplyModifiedProperties();
+        }
+
+        private void DrawUnityEventsList() {
+            EditorGUILayout.PropertyField(
+                unityEvents,
+                new GUIContent(
+                    "Callback",
+                    "Actions executed after all game objects were" +
+                    "activated."));
         }
 
         private void DrawGameObjectsList() {
@@ -44,6 +60,7 @@ namespace ActivateGameObjectEx {
 
             description = serializedObject.FindProperty("description");
             gameObjects = serializedObject.FindProperty("gameObjects");
+            unityEvents = serializedObject.FindProperty("unityEvents");
         }
 
         #endregion UNITY MESSAGES
